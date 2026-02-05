@@ -465,14 +465,29 @@ function decorateIcon(span, prefix = '', alt = '') {
   const iconName = Array.from(span.classList)
     .find((c) => c.startsWith('icon-'))
     .substring(5);
-  const img = document.createElement('img');
-  img.dataset.iconName = iconName;
-  img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
-  img.alt = alt;
-  img.loading = 'lazy';
-  img.width = 16;
-  img.height = 16;
-  span.append(img);
+  const iconPath = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
+  
+  // Fetch and inline the SVG
+  fetch(iconPath)
+    .then((response) => {
+      if (response.ok) return response.text();
+      throw new Error(`Failed to load icon: ${iconPath}`);
+    })
+    .then((svgContent) => {
+      span.innerHTML = svgContent;
+      span.classList.add('icon-loaded');
+    })
+    .catch(() => {
+      // Fallback to img tag if SVG fetch fails
+      const img = document.createElement('img');
+      img.dataset.iconName = iconName;
+      img.src = iconPath;
+      img.alt = alt;
+      img.loading = 'lazy';
+      img.width = 16;
+      img.height = 16;
+      span.append(img);
+    });
 }
 
 /**
