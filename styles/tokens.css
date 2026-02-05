@@ -158,9 +158,9 @@
     /* ========================================
        TYPOGRAPHY - FONT FAMILY
        ======================================== */
-    --font-family-primary: 'Surf', serif;
+    --font-family-primary: 'Surt Normal', sans-serif;
     --font-family-accent: 'NB Akademie Mono Std', monospace;
-    --font-family-serif: 'Surf', serif;
+    --font-family-serif: 'Surt Normal', sans-serif;
     --font-family-system-mac: 'SF Pro Text', system-ui;
     --font-family-system-pc: 'Segoe UI', system-ui;
     --font-family-system-ios: 'SF Pro', system-ui;
