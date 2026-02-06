@@ -494,7 +494,7 @@
        Used by `main > div` in styles.css
        ======================================== */
     /* Keep main layout in sync with responsive left/right padding */
-    --main-side-margin-x: var(--responsive-spacing-horizontal);
+    --main-side-margin-x: var(--spacing-400);
     --main-max-width: none;
   
     /* ========================================
@@ -546,6 +546,8 @@
       --responsive-width: 720px;
       --responsive-container: 672px; /* TODO: Check this */
       --responsive-content-box: 672px;
+      /* Keep main layout in sync with responsive left/right padding */
+      --main-side-margin-x: var(--spacing-600);
       /* Right / Left padding */
       --responsive-spacing-horizontal: var(--spacing-600); /* 24px */
       /* Space Between sections */
