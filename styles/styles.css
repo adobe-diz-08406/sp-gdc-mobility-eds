@@ -106,7 +106,7 @@ pre {
   white-space: pre;
 }
 
-main > div {
+main {
   box-sizing: border-box;
   width: 100%;
   max-width: var(--main-max-width);
@@ -207,11 +207,29 @@ main img {
  * Desktop XL:                  margin 56px, padding 56px
  */
 main > .section {
-  margin: var(--section-spacing-margin-y) 0;
-  padding: var(--section-spacing-padding-y) 0;
+  margin: var(--responsive-spacing-between-section) 0;
+  padding: var(--responsive-spacing-vertical) var(--responsive-spacing-horizontal);
 }
 
+/* Sections background colors */
+main .section.bg-grey {
+  background-color: var(--surface-page-neutral);
+  border-radius: var(--radius-sm);
+}
 
+main .section.bg-light-grey {
+  background-color: var(--surface-light-grey);
+  border-radius: var(--radius-sm);
+}
 
+main .section.bg-dark {
+  background-color: var(--surface-dark);
+  border-radius: var(--radius-sm);
+}
+
+main .section.bg-accent {
+  background-color: var(--surface-page-accent-1);
+  border-radius: var(--radius-sm);
+}
 
 

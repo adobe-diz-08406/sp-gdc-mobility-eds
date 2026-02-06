@@ -474,24 +474,27 @@
     --responsive-width: 360px;
     --responsive-container: 328px; /* TODO: Check this */
     --responsive-content-box: 328px;
-    --responsive-spacing-horizontal: var(--spacing-400);
-    --responsive-spacing-vertical: var(--spacing-700);
-    --responsive-spacing-section-padding: var(--spacing-400);
-    --responsive-spacing-hero: var(--spacing-400);
-    --responsive-spacing-between-section: var(--spacing-400);
+
+    /* Hero section padding */
+    --responsive-spacing-hero: var(--spacing-400); /* 16px */
 
     /* ========================================
        SECTION SPACING UTILS (Responsive)
        Used by `main > .section.section-spacing` in styles.css
        ======================================== */
-    --section-spacing-margin-y: var(--spacing-400); /* 16px */
-    --section-spacing-padding-y: var(--spacing-700); /* 32px */
+    /* Space Between sections */
+    --responsive-spacing-between-section: var(--spacing-500); /* 20px */
+    /* Right / Left padding */
+    --responsive-spacing-horizontal: var(--spacing-500); /* 20px */
+    /* Padding top and bottom inside the section */
+    --responsive-spacing-vertical: var(--spacing-700);
 
     /* ========================================
        MAIN LAYOUT (Responsive)
        Used by `main > div` in styles.css
        ======================================== */
-    --main-side-margin-x: var(--spacing-400); /* 16px */
+    /* Keep main layout in sync with responsive left/right padding */
+    --main-side-margin-x: var(--responsive-spacing-horizontal);
     --main-max-width: none;
   
     /* ========================================
@@ -529,7 +532,7 @@
      ======================================== */
   
   /* Mobile Large: sm (480px+) */
-  @media (width >= 480px) {
+  @media (width >= 510px) {
     :root {
       --responsive-width: 480px;
       --responsive-container: 448px; /* TODO: Check this */
@@ -543,13 +546,10 @@
       --responsive-width: 720px;
       --responsive-container: 672px; /* TODO: Check this */
       --responsive-content-box: 672px;
-      --responsive-spacing-horizontal: var(--spacing-600);
-      --responsive-spacing-vertical: var(--spacing-700);
-      --responsive-spacing-section-padding: var(--spacing-600);
-      --responsive-spacing-hero: var(--spacing-600);
-      --responsive-spacing-between-section: var(--spacing-600);
-      --section-spacing-margin-y: var(--spacing-600); /* 24px */
-      --main-side-margin-x: var(--spacing-600); /* 24px */
+      /* Right / Left padding */
+      --responsive-spacing-horizontal: var(--spacing-600); /* 24px */
+      /* Space Between sections */
+      --responsive-spacing-between-section: var(--spacing-600); /* 24px */
     }
   }
   
@@ -559,9 +559,6 @@
       --responsive-width: 1024px;
       --responsive-container: 976px; /* TODO: Check this */
       --responsive-content-box: 976px;
-      --responsive-spacing-horizontal: var(--spacing-700);
-      --responsive-spacing-section-padding: var(--spacing-700);
-      --responsive-spacing-between-section: var(--spacing-600);
     }
   }
   
@@ -571,13 +568,14 @@
       --responsive-width: 1260px;
       --responsive-container: 1200px; /* TODO: Check this */
       --responsive-content-box: 1100px;
-      --responsive-spacing-horizontal: var(--size-117);
-      --responsive-spacing-vertical: var(--spacing-950);
-      --responsive-spacing-section-padding: var(--spacing-1100);
-      --responsive-spacing-hero: var(--spacing-800);
-      --responsive-spacing-between-section: var(--spacing-700);
-      --section-spacing-padding-y: var(--spacing-950); /* 56px */
       --main-max-width: 1392px;
+      --responsive-spacing-hero: var(--spacing-800);
+      /* Padding left and right inside the section */
+      --responsive-spacing-horizontal: var(--size-117);
+       /* Padding top and bottom inside the section */
+      --responsive-spacing-vertical: var(--spacing-950);
+      /* Space Between sections */
+      --responsive-spacing-between-section: var(--spacing-700); /* 32px */
     }
   }
   
@@ -587,13 +585,10 @@
       --responsive-width: 1440px;
       --responsive-container: 1392px; /* TODO: Check this */
       --responsive-content-box: 1200px;
-      --responsive-spacing-horizontal: var(--size-135);
-      --responsive-spacing-vertical: var(--spacing-950);
-      --responsive-spacing-section-padding: var(--spacing-1100);
-      --responsive-spacing-hero: var(--spacing-800);
-      --responsive-spacing-between-section: var(--spacing-950);
-      --section-spacing-margin-y: var(--spacing-950); /* 56px */
       --main-max-width: 1600px;
+      --responsive-spacing-hero: var(--spacing-800);
+      /* Padding left and right inside the section */
+      --responsive-spacing-horizontal: var(--size-135);
     }
   }
   
