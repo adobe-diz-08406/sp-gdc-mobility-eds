@@ -164,7 +164,8 @@
     --font-family-system-mac: 'SF Pro Text', system-ui;
     --font-family-system-pc: 'Segoe UI', system-ui;
     --font-family-system-ios: 'SF Pro', system-ui;
-    --font-family-system-android: 'Roboto', sans-serif;
+    /* Roboto removed from /fonts — keep system token aligned with our primary font */
+    --font-family-system-android: 'Surt Normal', sans-serif;
     --font-family-code: 'Mono', monospace;
   
     /* ========================================
@@ -176,10 +177,14 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --font-weight-ultrabold: 800;
+    --font-weight-black: 900;
   
     /* ========================================
        TYPOGRAPHY - FONT SIZE SCALE
        ======================================== */
+    --font-size-45: 9px;
+    --font-size-50: 10px;
+    --font-size-75: 11px;
     --font-size-100: 12px;
     --font-size-200: 14px;
     --font-size-300: 16px;
@@ -201,7 +206,8 @@
     --body-font-size-l: var(--font-size-500);
     --body-font-size-xl: var(--font-size-600);
     
-    --heading-font-size-xs: var(--font-size-600);
+    /* UI Library typography maps "Header 500" to 18px */
+    --heading-font-size-xs: var(--font-size-500);
     --heading-font-size-s: var(--font-size-700);
     --heading-font-size-m: var(--font-size-800);
     --heading-font-size-l: var(--font-size-900);
@@ -209,6 +215,82 @@
     --heading-font-size-xxl: var(--font-size-1100);
     --heading-font-size-display: var(--font-size-1200);
     --heading-font-size-hero: var(--font-size-1300);
+
+    /* ========================================
+       TYPOGRAPHY - LINE HEIGHT & LETTER SPACING (UI Library)
+       Source: UI Library Typography node (24959:259)
+       ======================================== */
+    --letter-spacing-tight: -0.04em; /* Figma shows -4% across styles */
+
+    --line-height-14: 14px;
+    --line-height-16: 16px;
+    --line-height-22: 22px;
+    --line-height-26: 26px;
+    --line-height-30: 30px;
+    --line-height-32: 32px;
+    --line-height-44: 44px;
+    --line-height-53: 53px;
+    --line-height-64: 64px;
+
+    /* Percent-based line-heights from Figma tables (use as unitless multipliers) */
+    --line-height-100p: 1;
+    --line-height-103p: 1.03;
+    --line-height-104p: 1.04;
+    --line-height-120p: 1.2;
+    --line-height-130p: 1.3;
+    --line-height-140p: 1.4;
+    --line-height-150p: 1.5;
+    --line-height-160p: 1.6;
+
+    /* Named UI Library styles (optional helpers) */
+    --type-header-1200-size: var(--font-size-1200); /* 72 */
+    --type-header-1200-line-height: var(--line-height-104p);
+    --type-header-1200-weight: var(--font-weight-bold);
+
+    --type-header-1100-size: var(--font-size-1100); /* 56 */
+    --type-header-1100-line-height: var(--line-height-120p);
+    --type-header-1100-weight: var(--font-weight-bold);
+
+    --type-header-1000-size: var(--font-size-1000); /* 48 */
+    --type-header-1000-line-height: var(--line-height-64);
+    --type-header-1000-weight-ultrabold: var(--font-weight-ultrabold);
+    --type-header-1000-weight-semibold: var(--font-weight-semibold);
+
+    --type-header-900-size: var(--font-size-900); /* 40 */
+    --type-header-900-line-height: var(--line-height-140p);
+    --type-header-900-weight: var(--font-weight-semibold);
+
+    --type-header-800-size: var(--font-size-800); /* 32 */
+    --type-header-800-line-height: var(--line-height-130p);
+    --type-header-800-weight: var(--font-weight-semibold);
+
+    --type-header-700-size: var(--font-size-700); /* 24 */
+    --type-header-700-line-height: var(--line-height-140p);
+    --type-header-700-weight: var(--font-weight-semibold);
+
+    --type-header-500-size: var(--font-size-500); /* 18 */
+    --type-header-500-line-height: var(--line-height-30);
+    --type-header-500-weight: var(--font-weight-bold);
+
+    --type-body-600-size: var(--font-size-600); /* 20 */
+    --type-body-600-line-height: var(--line-height-32);
+    --type-body-600-weight: var(--font-weight-medium);
+
+    --type-body-500-size: var(--font-size-500); /* 18 */
+    --type-body-500-line-height: var(--line-height-26);
+    --type-body-500-weight: var(--font-weight-medium);
+
+    --type-body-400-size: var(--font-size-300); /* 16 */
+    --type-body-400-line-height: var(--line-height-26);
+    --type-body-400-weight: var(--font-weight-regular);
+
+    --type-body-200-size: var(--font-size-200); /* 14 */
+    --type-body-200-line-height: var(--line-height-22);
+    --type-body-200-weight: var(--font-weight-regular);
+
+    --type-eyebrow-size: var(--font-size-300); /* 16 */
+    --type-eyebrow-line-height: var(--line-height-26);
+    --type-eyebrow-font-family: var(--font-family-accent);
   
     /* ========================================
        TYPOGRAPHY - TEXT TRANSFORM
