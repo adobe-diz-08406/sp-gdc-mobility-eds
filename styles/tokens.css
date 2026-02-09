@@ -330,7 +330,7 @@
     
     /* Secondary Button */
     --button-secondary-bg-default: transparent;
-    --button-secondary-bg-hover: var(--color-brand-300);
+    --button-secondary-bg-hover: var(--color-blue-dark);
     --button-secondary-stroke-default: var(--color-black);
     --button-secondary-stroke-hover: var(--color-brand-300);
     --button-secondary-text-default: var(--typography-black);
@@ -660,6 +660,8 @@
       --responsive-spacing-vertical: var(--spacing-950);
       /* Space Between sections */
       --responsive-spacing-between-section: var(--spacing-700); /* 32px */
+      /* Keep main layout in sync with responsive left/right padding */
+      --main-side-margin-x: var(--spacing-0);
     }
   }
   

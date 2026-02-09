@@ -107,6 +107,8 @@ button.button.secondary:focus {
 }
 
 /* Inverted (for dark sections) */
+.inverted a.button:any-link,
+.inverted button.button,
 a.button.inverted:any-link,
 button.button.inverted {
   background-color: transparent;
@@ -115,12 +117,13 @@ button.button.inverted {
   --button-icon-filter: brightness(0) invert(1); /* white */
 }
 
-a.button.inverted:hover,
-a.button.inverted:focus,
-button.button.inverted:hover,
-button.button.inverted:focus {
+.inverted a.button:hover,
+.inverted a.button:focus,
+.inverted button.button:hover,
+.inverted button.button:focus {
   background-color: var(--button-inverse-default);
   color: var(--surface-dark);
+  --button-icon-filter: none; /* black */
 }
 
 /* Disabled */

@@ -14,6 +14,23 @@ import {
 } from './aem.js';
 
 /**
+ * Extracts text from a source element/string and returns it wrapped in:
+ * <p class="eye-brow {additionalClass}">Extracted text</p>
+ *
+ * @param {Element|string} source Element (or string) to extract text from
+ * @param {string} [additionalClass=''] Additional CSS class(es) to append
+ * @returns {HTMLParagraphElement|null} Paragraph element or null if no text found
+ */
+export function eyebrowDecorator(source, additionalClass = '') {
+  const text = (typeof source === 'string' ? source : source?.textContent || '').trim();
+  if (!text) return null;
+  const p = document.createElement('p');
+  p.className = ['eye-brow-text', additionalClass].filter(Boolean).join(' ');
+  p.textContent = text;
+  return p;
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */

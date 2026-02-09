@@ -16,23 +16,10 @@
 
 :root {
   /* Backwards-compatible aliases used across the codebase */
-  --body-font-family: var(--font-family-primary);
-  --heading-font-family: var(--font-family-primary);
+/*   --body-font-family: var(--font-family-primary);
+  --heading-font-family: var(--font-family-primary); */
   --nav-height: 64px;
   --light-color: var(--background-color-alt);
-}
-
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
 }
 
 body {
@@ -188,4 +175,21 @@ main .section.bg-accent {
   border-radius: var(--radius-sm);
 }
 
+/* Inverted sections */
+main .section.inverted {
+  color: var(--typography-inverse);
+}
+
+/* Eyebrow */
+.eye-brow-text {
+  font-family: var(--font-family-accent);
+  font-size: var(--font-size-300);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-26);
+  color: var(--typography-main);
+}
+
+.eye-brow-text.accent-color {
+  color: var(--typography-accent-1);
+}
 
