@@ -1,0 +1,18 @@
+{
+  "title": "card-grid-three-col",
+  "description": "Reusable card block",
+  "variations": [
+    {
+      "title": "Default",
+      "name": "card"
+    },
+    {
+      "title": "Featured",
+      "name": "card-featured"
+    },
+    {
+      "title": "Horizontal",
+      "name": "card-horizontal"
+    }
+  ]
+}
