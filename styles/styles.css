@@ -12,26 +12,14 @@
 
 @import url('./tokens.css');
 @import url('./grid.css');
+@import url('./button.css');
 
 :root {
   /* Backwards-compatible aliases used across the codebase */
-  --body-font-family: var(--font-family-primary);
-  --heading-font-family: var(--font-family-primary);
+/*   --body-font-family: var(--font-family-primary);
+  --heading-font-family: var(--font-family-primary); */
   --nav-height: 64px;
   --light-color: var(--background-color-alt);
-}
-
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
 }
 
 body {
@@ -133,51 +121,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
-a.button:any-link,
-button {
-  box-sizing: border-box;
-  display: inline-block;
-  max-width: 100%;
-  margin: 12px 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font-family: var(--body-font-family);
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.25;
-  text-align: center;
-  text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-a.button:hover,
-a.button:focus,
-button:hover,
-button:focus {
-  background-color: var(--link-hover-color);
-  cursor: pointer;
-}
-
-button:disabled,
-button:disabled:hover {
-  background-color: var(--light-color);
-  cursor: unset;
-}
-
-a.button.secondary,
-button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
-}
-
 main img {
   max-width: 100%;
   width: auto;
@@ -232,4 +175,21 @@ main .section.bg-accent {
   border-radius: var(--radius-sm);
 }
 
+/* Inverted sections */
+main .section.inverted {
+  color: var(--typography-inverse);
+}
+
+/* Eyebrow */
+.eye-brow-text {
+  font-family: var(--font-family-accent);
+  font-size: var(--font-size-300);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-26);
+  color: var(--typography-main);
+}
+
+.eye-brow-text.accent-color {
+  color: var(--typography-accent-1);
+}
 
