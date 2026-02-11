@@ -121,8 +121,8 @@
 .cards.two-col .card-item .icon-arrow,
 .cards.three-col .card-item .icon-arrow {
     display: inline-flex;
-    width: 16px;
-    height: 16px;
+    width: var(--icon-size-xsm);
+    height: var(--icon-size-xsm);
     transform: rotate(324deg);
     transition: transform 0.3s ease;
     margin-bottom: 15px;

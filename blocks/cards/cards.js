@@ -85,7 +85,10 @@ export default function decorate(block) {
     const copySource = cardCol.children[2];
 
     // If author added a link in the copy cell, make the whole card clickable
-    const linkEl = copySource && copySource.querySelector('a[href]');
+    // For image variant, also check the description (4th column) for a link
+    const descCol = isImageVariant ? cardCol.children[3] : null;
+    const linkEl = (copySource && copySource.querySelector('a[href]'))
+      || (descCol && descCol.querySelector('a[href]'));
     const isLinkCard = !!linkEl;
 
     const item = document.createElement(isLinkCard ? 'a' : 'div');
