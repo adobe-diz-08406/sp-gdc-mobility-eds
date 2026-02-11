@@ -1,22 +1,74 @@
 import { decorateIcons } from '../../scripts/aem.js';
+import { eyebrowDecorator } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  // Handle two-col and three-col variants (same behavior as card.js)
   const isTwoCol = block.classList.contains('two-col');
   const isThreeCol = block.classList.contains('three-col');
+  const isImageVariant = block.classList.contains('cards-image');
 
-  if (!isTwoCol && !isThreeCol) return;
+  if (!isTwoCol && !isThreeCol && !isImageVariant) return;
 
   // If authors applied background style (bg-dark / bg-grey) on the block,
   // move it up to the section so the entire section gets the background.
   const section = block.closest('.section');
   if (section) {
-    ['bg-dark', 'bg-grey'].forEach((bgClass) => {
+    ['bg-dark', 'bg-grey', 'bg-light','bg-accent'].forEach((bgClass) => {
       if (block.classList.contains(bgClass)) {
         block.classList.remove(bgClass);
         section.classList.add(bgClass);
       }
     });
+
+    // If the first row contains eyebrow + title content, lift it out
+    // into a default-content wrapper above the cards wrapper.
+    if (!section.querySelector('.default-content-wrapper')) {
+      const firstCol = block.firstElementChild;
+      if (firstCol) {
+        const hasHeading = firstCol.querySelector('h1, h2, h3, h4, h5, h6');
+        if (hasHeading) {
+          const eyebrowWrapper = document.createElement('div');
+          eyebrowWrapper.className = 'default-content-wrapper';
+          eyebrowWrapper.innerHTML = firstCol.innerHTML;
+
+          const cardsWrapper = section.querySelector('.cards-wrapper');
+          section.insertBefore(eyebrowWrapper, cardsWrapper || block);
+
+          firstCol.remove();
+        }
+      }
+    }
+  }
+
+  // Find and decorate eyebrow text in the default-content-wrapper
+  if (section) {
+    const defaultWrapper = section.querySelector('.default-content-wrapper');
+    if (defaultWrapper) {
+      const allParagraphs = defaultWrapper.querySelectorAll('p');
+      let eyebrowElement = null;
+
+      allParagraphs.forEach((p) => {
+        if (!p.querySelector('picture') && !p.classList.contains('button-container')
+          && !p.querySelector('strong') && !p.querySelector('em')
+          && !p.classList.contains('eye-brow-text')) {
+          const headingElement = defaultWrapper.querySelector('h1, h2, h3, h4, h5, h6');
+          if (headingElement
+            && p.compareDocumentPosition(headingElement) & Node.DOCUMENT_POSITION_FOLLOWING) {
+            eyebrowElement = p;
+          }
+        }
+      });
+
+      if (eyebrowElement) {
+        const eyebrowText = eyebrowElement.textContent.trim();
+        if (eyebrowText) {
+          eyebrowElement.classList.add('eyebrow');
+          const formattedEyebrow = eyebrowDecorator(eyebrowElement, 'accent-color');
+          if (formattedEyebrow) {
+            eyebrowElement.replaceWith(formattedEyebrow);
+          }
+        }
+      }
+    }
   }
 
   // Apply shared flex-grid helper classes for responsive layout
@@ -27,13 +79,16 @@ export default function decorate(block) {
     block.classList.add('col-md-2', 'col-lg-2');
   }
 
-  // Each direct child div represents a card item
+  // Each remaining direct child div represents a card item
   const items = [];
   [...block.children].forEach((cardCol) => {
     const copySource = cardCol.children[2];
 
     // If author added a link in the copy cell, make the whole card clickable
-    const linkEl = copySource && copySource.querySelector('a[href]');
+    // For image variant, also check the description (4th column) for a link
+    const descCol = isImageVariant ? cardCol.children[3] : null;
+    const linkEl = (copySource && copySource.querySelector('a[href]'))
+      || (descCol && descCol.querySelector('a[href]'));
     const isLinkCard = !!linkEl;
 
     const item = document.createElement(isLinkCard ? 'a' : 'div');
@@ -60,6 +115,88 @@ export default function decorate(block) {
       }
     }
 
+    // Image variant: use two images (default + hover), label, and optional description (on hover)
+    if (isImageVariant) {
+      const head = document.createElement('div');
+      head.className = 'card-head';
+
+      const imageWrapper = document.createElement('div');
+      imageWrapper.className = 'card-image';
+
+      const baseImageSource = cardCol.children[0]
+        && cardCol.children[0].querySelector('img');
+      const hoverImageSource = cardCol.children[1]
+        && cardCol.children[1].querySelector('img');
+
+      if (baseImageSource) {
+        const baseImg = baseImageSource.cloneNode(true);
+        baseImg.classList.add('card-image-default');
+        imageWrapper.append(baseImg);
+      }
+
+      if (hoverImageSource) {
+        const hoverImg = hoverImageSource.cloneNode(true);
+        hoverImg.classList.add('card-image-hover');
+        imageWrapper.append(hoverImg);
+      }
+
+      head.append(imageWrapper);
+
+      const titleEl = document.createElement('h3');
+      titleEl.className = 'card-title';
+      const titleSource = copySource;
+      const descriptionSource = cardCol.children[3];
+
+      if (titleSource) {
+        // Use inner <p> if present to avoid p-in-p
+        let textSource = titleSource;
+        const firstElement = titleSource.firstElementChild;
+        if (firstElement && firstElement.tagName === 'P') {
+          textSource = firstElement;
+        }
+
+        const textClone = textSource.cloneNode(true);
+
+        // Remove any inner link markup; card itself is the link
+        const innerLink = textClone.querySelector('a[href]');
+        if (innerLink) {
+          innerLink.replaceWith(...innerLink.childNodes);
+        }
+
+        titleEl.innerHTML = textClone.innerHTML;
+      }
+
+      head.append(titleEl);
+
+      const body = document.createElement('div');
+      body.className = 'card-body';
+
+      if (descriptionSource) {
+        // Use inner <p> if present to avoid p-in-p
+        let descSource = descriptionSource;
+        const firstDescElement = descriptionSource.firstElementChild;
+        if (firstDescElement && firstDescElement.tagName === 'P') {
+          descSource = firstDescElement;
+        }
+
+        const descClone = descSource.cloneNode(true);
+
+        const innerDescLink = descClone.querySelector('a[href]');
+        if (innerDescLink) {
+          innerDescLink.replaceWith(...innerDescLink.childNodes);
+        }
+
+        const descParagraph = document.createElement('p');
+        descParagraph.innerHTML = descClone.innerHTML;
+        body.append(descParagraph);
+      }
+
+      item.append(head, body);
+      items.push(item);
+      return;
+    }
+
+    // Default cards variant with icon, title and body copy
     const head = document.createElement('div');
     head.className = 'card-head';
 
@@ -123,7 +260,9 @@ export default function decorate(block) {
 
   // Let global decorator load/inject icons from /icons/
   try {
-    decorateIcons(block);
+     if (!isImageVariant) {
+      decorateIcons(block);
+    }
   } catch (e) {
     // ignore if decorateIcons not available yet
   }

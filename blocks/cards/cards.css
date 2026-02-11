@@ -1,162 +1,332 @@
-/* Container variant: no border cards inside this section */
-.section.card-grid-container.card-no-border .card-grid.two-col .card-item,
-.section.card-grid-container.card-no-border .card-grid.three-col .card-item {
+/* No-border variant: support both section-level and block-level card-no-border */
+.section.cards-container.card-no-border .cards.two-col .card-item,
+.section.cards-container.card-no-border .cards.three-col .card-item,
+.cards.two-col.card-no-border .card-item,
+.cards.three-col.card-no-border .card-item {
     border: none;
 }
 
 /* Base block */
-.card-grid.two-col.block,
-.card-grid.three-col.block {
+.cards.two-col,
+.cards.three-col {
     width: 100%;
 }
 
-/* Card items */
-.card-grid.two-col.block .card-item,
-.card-grid.three-col.block .card-item {
+/* Card items (including image variant) */
+.cards.two-col .card-item,
+.cards.three-col .card-item,
+.cards-image .card-item {
     cursor: pointer;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-200);
-    padding: var(--spacing-700) var(--spacing-600);
+    gap: 16px;
+    padding: var(--spacing-500);
     border-radius: var(--radius-sm);
     border: var(--size-1) solid var(--border-color);
-    background-color: var(--surface-page-neutral);
     text-decoration: none;
     justify-content: space-between;
     transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
+        background-color 0.6s ease,
+        color 0.6s ease;
+
+    @media (width >= 720px) {
+        padding: var(--spacing-700) var(--spacing-600);
+        gap: var(--spacing-200);
+    }
 }
 
 /* Typography inside cards */
-.card-grid.two-col.block .card-item p,
-.card-grid.three-col.block .card-item p {
+.cards.two-col .card-item p,
+.cards.three-col .card-item p {
     margin: 0;
     color: var(--text-color);
 }
 
 /* Icon row (card-head) */
-.card-grid.two-col.block .card-item .card-head,
-.card-grid.three-col.block .card-item .card-head {
+.cards.two-col .card-item .card-head,
+.cards.three-col .card-item .card-head {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--spacing-200);
+    gap: var(--size-8);
 }
 
-.card-grid.two-col.block .card-item .card-head .icon,
-.card-grid.three-col.block .card-item .card-head .icon {
+.card-no-border.two-col .card-item,
+.card-no-border.three-col .card-item {
+    gap: 32px;
+    padding: 32px 0;
+    height: 300px;
+    @media (width >= 720px) {
+        padding: var(--spacing-700) var(--spacing-600);
+        gap: 34px;
+        height: 100%;
+    }
+}
+
+.card-no-border.two-col .card-item .card-head,
+.card-no-border.three-col .card-item .card-head {
+    gap: var(--size-8);
+}
+
+.cards.two-col .card-item .card-head .icon,
+.cards.three-col .card-item .card-head .icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 48px;
-    height: 47px;
+    width: var(--size-48);
+    height: var(--size-47);
 }
 
 /* Title */
-.card-grid.two-col.block .card-item .card-title,
-.card-grid.three-col.block .card-item .card-title {
+.cards.two-col .card-item .card-title,
+.cards.three-col .card-item .card-title {
     margin: 0;
     font-family: var(--font-family-primary);
     font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-500);
-    font-style: normal;
+    font-size: 24px;
     font-weight: 600;
     line-height: 140%;
     letter-spacing: -0.96px;
     @media (width >= 768px) {
-        .card-grid.two-col.block .card-item .card-title,
-        .card-grid.three-col.block .card-item .card-title {
-            font-size: var(--font-size-700);
-        }
+        font-size: var(--font-size-700);
     }
 }
 
 /* Body copy */
-.card-grid.two-col.block .card-item .card-body,
-.card-grid.three-col.block .card-item .card-body {
+.cards.two-col .card-item .card-body,
+.cards.three-col .card-item .card-body {
     margin-top: var(--spacing-150);
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    gap: var(--spacing-200);
+    gap: 24px;
+    @media (width >= 720px) {
+        gap: var(--spacing-200);
+    }
 }
 
-.card-grid.two-col.block .card-item .card-body p,
-.card-grid.three-col.block .card-item .card-body p {
+.cards.two-col .card-item .card-body p,
+.cards.three-col .card-item .card-body p {
     margin: 0;
-    font-size: var(--body-font-size-m);
     width: 100%;
-    font-family: "Surt Normal";
-    font-size: var(--font-size-200);
-    font-style: normal;
-    font-weight: 400;
-    line-height: var(--Responsive-Fonts-Body-Line-height-26, 26px); /* 162.5% */
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-regular);
+    line-height: 26px;
     letter-spacing: -0.64px;
 }
 
 /* Arrow icon in body */
-.card-grid.two-col.block .card-item .icon-arrow,
-.card-grid.three-col.block .card-item .icon-arrow {
+.cards.two-col .card-item .icon-arrow,
+.cards.three-col .card-item .icon-arrow {
     display: inline-flex;
-}
-
-.card-grid.two-col.block .card-item .icon-arrow,
-.card-grid.three-col.block .card-item .icon-arrow {
-    width: 26px;
-    height: 26px;
+    width: var(--icon-size-xsm);
+    height: var(--icon-size-xsm);
     transform: rotate(324deg);
     transition: transform 0.3s ease;
+    margin-bottom: 15px;
 }
 
 /* Hover state: dark background, white text & icons */
-.card-grid.two-col.block .card-item:hover,
-.card-grid.three-col.block .card-item:hover {
+.cards.two-col .card-item:hover,
+.cards.three-col .card-item:hover {
     background-color: var(--surface-dark);
     color: var(--typography-inverse);
 }
 
-.card-grid.two-col.block .card-item:hover p,
-.card-grid.three-col.block .card-item:hover p {
+.cards.two-col .card-item:hover p,
+.cards.three-col .card-item:hover p {
     color: var(--typography-inverse);
 }
 
-/* .card-grid.two-col.block .card-item:hover .card-body p,
-.card-grid.three-col.block .card-item:hover .card-body p {
-  margin-left: var(--spacing-100);
-} */
-
-.card-grid.two-col.block .card-item:hover .icon img,
-.card-grid.two-col.block .card-item:hover .icon-arrow img,
-.card-grid.three-col.block .card-item:hover .icon img,
-.card-grid.three-col.block .card-item:hover .icon-arrow img {
+.cards.two-col .card-item:hover .icon img,
+.cards.two-col .card-item:hover .icon-arrow img,
+.cards.three-col .card-item:hover .icon img,
+.cards.three-col .card-item:hover .icon-arrow img {
     filter: brightness(0) invert(1);
 }
 
 /* Ensure inline SVG icons also turn white on hover */
-.card-grid.two-col.block .card-item:hover .icon svg path,
-.card-grid.two-col.block .card-item:hover .icon-arrow svg path,
-.card-grid.three-col.block .card-item:hover .icon svg path,
-.card-grid.three-col.block .card-item:hover .icon-arrow svg path {
+.cards.two-col .card-item:hover .icon svg path,
+.cards.two-col .card-item:hover .icon-arrow svg path,
+.cards.three-col .card-item:hover .icon svg path,
+.cards.three-col .card-item:hover .icon-arrow svg path {
     fill: var(--typography-inverse, #fff);
 }
 
-.card-grid.two-col.block .card-item:hover .icon-arrow,
-.card-grid.three-col.block .card-item:hover .icon-arrow {
+.cards.two-col .card-item:hover .icon-arrow,
+.cards.three-col .card-item:hover .icon-arrow {
     transform: rotate(360deg);
 }
 
+/* -------------------------------------------------- */
+/* Image cards variant: cards-image                    */
+/* -------------------------------------------------- */
+
+.cards-image .card-item {
+    background-color: var(--surface-white);
+    align-items: flex-start;
+    padding: 20px;
+    @media (width >= 720px) {
+        padding: 32px;
+    }
+}
+
+.cards.cards-image .card-head {
+    align-items: flex-start;
+    gap: var(--spacing-300);
+    @media (width >= 720px) {
+        gap: 32px;
+    }
+}
+
+.cards.cards-image .card-image {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.cards.cards-image .card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    @media (width >= 720px) {
+        width: 384px;
+        height: 280px;
+    }
+}
+
+.cards.cards-image .card-image .card-image-default {
+    transition: opacity 0.6s ease;
+}
+
+.cards.cards-image .card-image .card-image-hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.cards.cards-image .card-item:hover .card-image .card-image-default {
+    opacity: 0;
+}
+
+.cards.cards-image .card-item:hover .card-image .card-image-hover {
+    opacity: 1;
+}
+
+.cards.cards-image .card-title {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-600);
+    font-weight: var(--font-weight-bold);
+    line-height: 160%; /* 32px */
+    letter-spacing: -0.8px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-end;
+    word-break: break-all;
+    color: var(--Typography-Main, #172443);
+
+    @media (width >= 720px) {
+        gap: var(--spacing-400);
+    }
+}
+
+/* Arrow icon sizing for image cards: card-title and card-body */
+.cards.cards-image .card-title .icon-arrow,
+.cards.cards-image .card-body .icon-arrow {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    transform: rotate(324deg);
+    transition: transform 0.3s ease;
+}
+
+.cards.cards-image .card-body .icon-arrow {
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+.cards.cards-image .card-title .icon-arrow svg,
+.cards.cards-image .card-title .icon-arrow img,
+.cards.cards-image .card-body .icon-arrow svg,
+.cards.cards-image .card-body .icon-arrow img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Description for image cards: hidden by default, shown on hover */
+.cards.cards-image .card-body {
+    margin-top: var(--spacing-200);
+    display: block;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition:
+        opacity 0.3s ease,
+        max-height 0.3s ease;
+}
+
+.cards.cards-image .card-body p {
+    color: var(--Typography-Secondary);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-400);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-22);
+    letter-spacing: -0.56px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-end;
+}
+
+.cards.cards-image .card-item:hover .card-body {
+    opacity: 1;
+    max-height: 200px;
+}
+
+/* For image cards only, hide the leading icon inside the card title row on hover */
+.cards.cards-image .card-item:hover .card-head .icon {
+    display: none;
+}
+
+/* For image cards variant, keep background and text colors unchanged on hover */
+.cards.cards-image .card-item:hover {
+    background-color: var(--surface-white);
+    color: var(--text-color);
+}
+
+.cards.cards-image .card-item:hover p {
+    color: var(--text-color);
+}
+
+.cards.cards-image .card-item:hover .icon img,
+.cards.cards-image .card-item:hover .icon-arrow img {
+    filter: none;
+}
+
+.cards.cards-image .card-item:hover .icon svg path,
+.cards.cards-image .card-item:hover .icon-arrow svg path {
+    fill: currentColor;
+}
+
+/* Layout is handled by flex-grid helper classes applied in cards.js */
 /* Layout: mobile-first (stacked); 2 or 3 columns from tablet up */
 @media (width >= 720px) {
-    .card-grid.two-col.block,
-    .card-grid.three-col.block {
+    .cards.two-col,
+    .cards.three-col,
+    .cards-image {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: var(--spacing-400);
     }
 }
 @media (width >= 1025px) {
-    .card-grid.three-col.block {
+    .cards.three-col,
+    .cards-image {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
@@ -167,124 +337,121 @@
     padding: unset;
 }
 
-.card-grid-wrapper {
+/* Hide library metadata wrapper inside card sections so only eyebrow/title show above cards */
+.section.card-container .library-metadata-wrapper,
+.section.cards-container .library-metadata-wrapper {
+    display: none;
+}
+
+.cards-wrapper {
     margin: var(--size-24) 0 0;
 }
 
-/* Reset margins for text inside card-grid sections */
-.card-grid-container p,
-.card-grid-container h1,
-.card-grid-container h2,
-.card-grid-container h3,
-.card-grid-container h4,
-.card-grid-container h5,
-.card-grid-container h6 {
-    margin: 0;
+.cards-wrapper:has(.cards-image) {
+    margin-top: 24px;
+    @media (width >= 720px) {
+        margin-top: 48px;
+    }
 }
 
-.card-grid-container h1,
-.card-grid-container h2,
-.card-grid-container h3,
-.card-grid-container h4,
-.card-grid-container h5,
-.card-grid-container h6 {
-    margin-top: 24px;
+/* Heading color for sections containing cards-image */
+.cards-container:has(.cards-image) h1,
+.cards-container:has(.cards-image) h2,
+.cards-container:has(.cards-image) h3,
+.cards-container:has(.cards-image) h4,
+.cards-container:has(.cards-image) h5 {
+    color: var(--typography-black);
+    font-family: var(--font-family-primary);
+    font-size: var(--heading-font-size-m);
+    font-weight: var(--font-weight-semibold);
+    line-height: 130%;
+    letter-spacing: -1.28px;
+}
+
+/* Reset margins for text inside cards sections */
+.cards-container p,
+.cards-container h1,
+.cards-container h2,
+.cards-container h3,
+.cards-container h4,
+.cards-container h5,
+.cards-container h6 {
+    margin: 0;
+}
+/* Heading styles for text inside cards sections Need to re-visit this after heading typography is done */
+.cards-container h1,
+.cards-container h2,
+.cards-container h3,
+.cards-container h4,
+.cards-container h5,
+.cards-container h6 {
+    margin-top: 16px;
+    font-size: var(--font-size-700);
+    font-weight: 600;
+    line-height: 130%;
+    letter-spacing: -0.96px;
+    @media (width >= 720px) {
+        margin-top: 24px;
+        font-size: var(--font-size-800);
+    }
 }
 
 /* Dark background variant: use inverse typography color */
-.card-grid-container.bg-dark,
-.card-grid-container.bg-dark p,
-.card-grid-container.bg-dark h1,
-.card-grid-container.bg-dark h2,
-.card-grid-container.bg-dark h3,
-.card-grid-container.bg-dark h4,
-.card-grid-container.bg-dark h5,
-.card-grid-container.bg-dark h6,
-.card-grid-container.bg-dark svg {
-    color: var(--typography-inverse, #fff);
+.cards-container.bg-dark,
+.cards-container.bg-dark p,
+.cards-container.bg-dark h1,
+.cards-container.bg-dark h2,
+.cards-container.bg-dark h3,
+.cards-container.bg-dark h4,
+.cards-container.bg-dark h5,
+.cards-container.bg-dark h6,
+.cards-container.bg-dark svg {
+    color: var(--typography-inverse);
 }
 
 /* In bg-dark sections, default card icons should also appear inverse (white) */
-.card-grid-container.bg-dark .card-grid.two-col.block .card-item .icon svg path,
-.card-grid-container.bg-dark
-    .card-grid.two-col.block
-    .card-item
-    .icon-arrow
-    svg
-    path,
-.card-grid-container.bg-dark
-    .card-grid.three-col.block
-    .card-item
-    .icon
-    svg
-    path,
-.card-grid-container.bg-dark
-    .card-grid.three-col.block
-    .card-item
-    .icon-arrow
-    svg
-    path {
-    fill: var(--typography-inverse, #fff);
+.cards-container.bg-dark .cards.two-col .card-item .icon svg path,
+.cards-container.bg-dark .cards.two-col .card-item .icon-arrow svg path,
+.cards-container.bg-dark .cards.three-col .card-item .icon svg path,
+.cards-container.bg-dark .cards.three-col .card-item .icon-arrow svg path {
+    fill: var(--typography-inverse);
 }
 
-.card-grid-container.bg-dark .card-grid.two-col.block .card-item .icon img,
-.card-grid-container.bg-dark
-    .card-grid.two-col.block
-    .card-item
-    .icon-arrow
-    img,
-.card-grid-container.bg-dark .card-grid.three-col.block .card-item .icon img,
-.card-grid-container.bg-dark
-    .card-grid.three-col.block
-    .card-item
-    .icon-arrow
-    img {
+.cards-container.bg-dark .cards.two-col .card-item .icon img,
+.cards-container.bg-dark .cards.two-col .card-item .icon-arrow img,
+.cards-container.bg-dark .cards.three-col .card-item .icon img,
+.cards-container.bg-dark .cards.three-col .card-item .icon-arrow img {
     filter: brightness(0) invert(1);
 }
 
 /* When section is bg-dark: cards start dark and invert to light on hover */
-.card-grid-container.bg-dark .card-grid.two-col.block .card-item,
-.card-grid-container.bg-dark .card-grid.three-col.block .card-item {
+.cards-container.bg-dark .cards.two-col .card-item,
+.cards-container.bg-dark .cards.three-col .card-item {
     background-color: var(--surface-dark);
-    color: var(--typography-inverse, #fff);
+    color: var(--typography-inverse);
 }
 
-.card-grid-container.bg-dark .card-grid.two-col.block .card-item p,
-.card-grid-container.bg-dark .card-grid.three-col.block .card-item p {
-    color: var(--typography-inverse, #fff);
+.cards-container.bg-dark .cards.two-col .card-item p,
+.cards-container.bg-dark .cards.three-col .card-item p {
+    color: var(--typography-inverse);
 }
 
-.card-grid-container.bg-dark .card-grid.two-col.block .card-item:hover,
-.card-grid-container.bg-dark .card-grid.three-col.block .card-item:hover {
+.cards-container.bg-dark .cards.two-col .card-item:hover,
+.cards-container.bg-dark .cards.three-col .card-item:hover {
     background-color: var(--surface-page-neutral);
     color: var(--text-color);
 }
 
-.card-grid-container.bg-dark .card-grid.two-col.block .card-item:hover p,
-.card-grid-container.bg-dark .card-grid.three-col.block .card-item:hover p {
+.cards-container.bg-dark .cards.two-col .card-item:hover p,
+.cards-container.bg-dark .cards.three-col .card-item:hover p {
     color: var(--text-color);
 }
 
-.card-grid-container.bg-dark
-    .card-grid.two-col.block
-    .card-item:hover
-    .icon
-    svg
-    path,
-.card-grid-container.bg-dark
-    .card-grid.two-col.block
-    .card-item:hover
-    .icon-arrow
-    svg
-    path,
-.card-grid-container.bg-dark
-    .card-grid.three-col.block
-    .card-item:hover
-    .icon
-    svg
-    path,
-.card-grid-container.bg-dark
-    .card-grid.three-col.block
+.cards-container.bg-dark .cards.two-col .card-item:hover .icon svg path,
+.cards-container.bg-dark .cards.two-col .card-item:hover .icon-arrow svg path,
+.cards-container.bg-dark .cards.three-col .card-item:hover .icon svg path,
+.cards-container.bg-dark
+    .cards.three-col
     .card-item:hover
     .icon-arrow
     svg
@@ -292,25 +459,9 @@
     fill: var(--text-color);
 }
 
-.card-grid-container.bg-dark
-    .card-grid.two-col.block
-    .card-item:hover
-    .icon
-    img,
-.card-grid-container.bg-dark
-    .card-grid.two-col.block
-    .card-item:hover
-    .icon-arrow
-    img,
-.card-grid-container.bg-dark
-    .card-grid.three-col.block
-    .card-item:hover
-    .icon
-    img,
-.card-grid-container.bg-dark
-    .card-grid.three-col.block
-    .card-item:hover
-    .icon-arrow
-    img {
+.cards-container.bg-dark .cards.two-col .card-item:hover .icon img,
+.cards-container.bg-dark .cards.two-col .card-item:hover .icon-arrow img,
+.cards-container.bg-dark .cards.three-col .card-item:hover .icon img,
+.cards-container.bg-dark .cards.three-col .card-item:hover .icon-arrow img {
     filter: none;
 }
