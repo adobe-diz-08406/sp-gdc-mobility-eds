@@ -31,6 +31,31 @@ export function eyebrowDecorator(source, additionalClass = '') {
 }
 
 /**
+ * Wraps text in a styled tag (rounded-rectangle label) element.
+ * Four visual variations match the design system tokens:
+ *   - outline: bordered, no fill (--tag-border-outline, --tag-text-outline)
+ *   - fill:    solid background  (--tag-bg-fill, --tag-text-fill)
+ *   - glass:   translucent, for dark backgrounds (--tag-bg-glass, --tag-text-glass)
+ *   - dark:    solid dark background (--surface-dark, --typography-inverse)
+ *
+ * @param {Element|string} source  Element (or string) to extract text from
+ * @param {'outline'|'fill'|'glass'|'dark'} [variation='fill'] Visual variation
+ * @returns {HTMLSpanElement|null} Styled span element or null if no text found
+ */
+export function tagDecorator(source, variation = 'fill') {
+  const text = (typeof source === 'string' ? source : source?.textContent || '').trim();
+  if (!text) return null;
+
+  const validVariations = ['outline', 'fill', 'glass', 'dark'];
+  const safeVariation = validVariations.includes(variation) ? variation : 'fill';
+
+  const span = document.createElement('span');
+  span.className = `tag tag-${safeVariation}`;
+  span.textContent = text;
+  return span;
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
