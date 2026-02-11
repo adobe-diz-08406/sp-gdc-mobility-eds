@@ -1,0 +1,22 @@
+{
+  "title": "Cards",
+  "description": "Reusable card block",
+  "variations": [
+    {
+      "title": "Two column – grey background",
+      "name": "card-two-column-grey"
+    },
+    {
+      "title": "Two column – dark background",
+      "name": "card-two-column-dark"
+    },
+    {
+      "title": "Three column – grey background",
+      "name": "card-three-column-grey"
+    },
+    {
+      "title": "Three column – dark background",
+      "name": "card-three-column-dark"
+    }
+  ]
+}
