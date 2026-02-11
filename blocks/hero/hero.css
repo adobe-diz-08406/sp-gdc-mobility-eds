@@ -7,12 +7,8 @@
   box-sizing: border-box;
 }
 
-/* Prevent overflow on mobile for light-grey section variations */
-.section.bg-light-grey {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
+main > .section {
+  padding: 0;
 }
 
 .section.bg-light-grey .hero-wrapper {
@@ -384,7 +380,6 @@ main > div.hero-section {
 .hero-black-colored-right-content > p:not(.button-container):not(:first-of-type) {
   margin: var(--spacing-700) 0 0;
   padding: 0;
-  color: var(--typography-secondary);
 }
 
 .hero-black-colored-right .button-container {
