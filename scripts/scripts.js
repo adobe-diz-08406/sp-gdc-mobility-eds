@@ -32,6 +32,48 @@ export function eyebrowDecorator(source, additionalClass = '') {
 
 
 /**
+ * Finds raw "tag" block tables (authored inside other blocks) and replaces
+ * each with a styled <span class="tag tag-{variation}"> element.
+ *
+ * Authored table format (nested inside a parent block):
+ *   Row 1 cell: tag (tag-dark)   — block name + variation
+ *   Row 2 cell: DataSet          — visible label text
+ *
+ * @param {Element} container The container to search for tag tables
+ */
+export function decorateTags(container) {
+  container.querySelectorAll('table').forEach((table) => {
+    const rows = [...table.querySelectorAll('tr')];
+    if (rows.length < 2) return;
+
+    const headerCell = rows[0].querySelector('td, th');
+    if (!headerCell) return;
+
+    const headerText = headerCell.textContent.trim().toLowerCase();
+    const tagMatch = headerText.match(/^tag(?:\s*\(([^)]+)\))?$/);
+    if (!tagMatch) return;
+
+    let classes = 'tag';
+    if (tagMatch[1]) {
+      let variation = tagMatch[1].trim();
+      if (!variation.startsWith('tag-')) {
+        variation = `tag-${variation}`;
+      }
+      classes += ` ${variation}`;
+    }
+
+    const contentCell = rows[1].querySelector('td, th');
+    const content = contentCell ? contentCell.textContent.trim() : '';
+    if (!content) return;
+
+    const span = document.createElement('span');
+    span.className = classes;
+    span.textContent = content;
+    table.replaceWith(span);
+  });
+}
+
+/**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
@@ -105,6 +147,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateTags(main);
 }
 
 /**

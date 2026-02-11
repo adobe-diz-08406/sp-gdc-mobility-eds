@@ -25,6 +25,9 @@ export default function decorate(block) {
       const picture = imageParagraph.querySelector('picture');
       if (picture) {
         picture.remove();
+        if (!imageParagraph.textContent.trim()) {
+          imageParagraph.remove();
+        }
         imageWrapper = document.createElement('div');
         imageWrapper.className = 'hero-black-colored-right-image';
         imageWrapper.appendChild(picture);
@@ -189,13 +192,4 @@ export default function decorate(block) {
     }
   }
 
-  /* Wrap 2nd/3rd variations in bg-light-grey section */
-  if (isTwoColoredRight || isBlackColoredRight) {
-    const heroWrapper = block.closest('.hero-wrapper') || block.parentElement;
-    const sectionWrapper = document.createElement('div');
-    sectionWrapper.className = 'section bg-light-grey';
-    const parent = heroWrapper.parentElement;
-    parent.insertBefore(sectionWrapper, heroWrapper);
-    sectionWrapper.appendChild(heroWrapper);
-  }
 }

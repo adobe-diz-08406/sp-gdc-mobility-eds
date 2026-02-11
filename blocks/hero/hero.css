@@ -370,6 +370,10 @@ main > div.hero-section {
   box-sizing: border-box;
 }
 
+.hero-black-colored-right-content > .tag {
+  margin: 0 0 var(--spacing-400) 0;
+}
+
 .hero-black-colored-right h5 {
   margin: var(--spacing-700) 0 0;
   padding: 0;

@@ -193,16 +193,12 @@ main .section.inverted {
   color: var(--typography-accent-1);
 }
 
-/* Tags — rounded-rectangle labels in four color variations */
+/* Tags — labels with asymmetric rounded corners (top-left + bottom-right) */
 .tag {
   display: inline-flex;
   align-items: center;
-  padding: var(--spacing-200) var(--spacing-400);
-  border-radius: var(--radius-xs);
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-200);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-22);
+  padding: var(--spacing-300) var(--spacing-400);
+  border-radius: var(--radius-8) 0 var(--radius-8) 0;
   white-space: nowrap;
   border: var(--border-width-100) solid transparent;
 }
@@ -217,7 +213,7 @@ main .section.inverted {
 /* Fill: solid background */
 .tag-fill {
   background-color: var(--tag-bg-fill);
-  color: var(--tag-text-fill);
+  color: var(--tag-text-outline);
 }
 
 /* Glass: translucent, designed for dark backgrounds */
@@ -229,7 +225,8 @@ main .section.inverted {
 
 /* Dark: solid dark background */
 .tag-dark {
-  background-color: var(--surface-dark);
+  background-color: var(--color-black);
   color: var(--typography-inverse);
 }
+
 
