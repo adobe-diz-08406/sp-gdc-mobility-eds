@@ -5,6 +5,12 @@ export default function decorate(block) {
   const heading = block.querySelector('h1, h2, h5');
   if (!heading) return;
 
+  /* Inject hero-section class so block CSS stays decoupled from global section classes */
+  const section = block.closest('.section');
+  if (section && section.classList.contains('bg-light-grey')) {
+    section.classList.add('hero-section');
+  }
+
   const isBlackColoredRight = block.classList.contains('hero-black-colored-right');
   const isTwoColoredRight = block.classList.contains('hero-two-colored-right');
   const isEmAccent = !isTwoColoredRight && heading.querySelector('em') !== null;
@@ -95,9 +101,16 @@ export default function decorate(block) {
   let eyebrowElement = null;
 
   allParagraphs.forEach((p) => {
-    if (!p.querySelector('picture') && !p.classList.contains('button-container') && !p.querySelector('strong') && !p.querySelector('em') && !p.classList.contains('eye-brow-text')) {
+    const noPicture = !p.querySelector('picture');
+    const noButtonContainer = !p.classList.contains('button-container');
+    const noStrong = !p.querySelector('strong');
+    const noEm = !p.querySelector('em');
+    const noEyebrowClass = !p.classList.contains('eye-brow-text');
+    if (noPicture && noButtonContainer && noStrong && noEm && noEyebrowClass) {
       const headingElement = contentWrapper.querySelector('h1, h2, h5');
-      if (headingElement && p.compareDocumentPosition(headingElement) & Node.DOCUMENT_POSITION_FOLLOWING) {
+      const pos = p.compareDocumentPosition(headingElement);
+      const isFollowing = Math.floor(pos / Node.DOCUMENT_POSITION_FOLLOWING) % 2 === 1;
+      if (headingElement && isFollowing) {
         eyebrowElement = p;
       }
     }
@@ -191,5 +204,4 @@ export default function decorate(block) {
       }
     }
   }
-
 }

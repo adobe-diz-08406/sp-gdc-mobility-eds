@@ -11,53 +11,11 @@ main > .section {
   padding: 0;
 }
 
-.section.bg-light-grey .hero-wrapper {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.section.bg-light-grey .hero {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.section.bg-light-grey .hero-two-colored-right-content,
-.section.bg-light-grey .hero-black-colored-right-content {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.section.bg-light-grey .hero-two-colored-right-content *,
-.section.bg-light-grey .hero-black-colored-right-content * {
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-.section.bg-light-grey .hero-two-colored-right-content img,
-.section.bg-light-grey .hero-black-colored-right-content img,
-.section.bg-light-grey .hero-two-colored-right-content picture,
-.section.bg-light-grey .hero-black-colored-right-content picture {
-  max-width: 100%;
-  height: auto;
-}
-
 /* Break hero section out of main constraints */
 main > .section.hero-section,
 main > div.hero-section {
-  margin-left: calc(-1 * var(--main-side-margin-x));
-  margin-right: calc(-1 * var(--main-side-margin-x));
-  padding: 0;
-  width: calc(100% + 2 * var(--main-side-margin-x));
-  max-width: none;
-  box-sizing: content-box;
-}
-
-.hero-section .hero {
-  width: 100%;
-  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* ========================================
@@ -73,6 +31,16 @@ main > div.hero-section {
   overflow: hidden;
   margin: 0;
   padding: 0;
+
+  --button-margin: 0;
+  --button-display: block;
+  --button-width: 100%;
+}
+
+.hero-section .hero {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .hero .eye-brow-text {
@@ -85,19 +53,10 @@ main > div.hero-section {
   display: block;
 }
 
-/* Override a.button:any-link specificity (0,2,1) from button.css */
-.hero a.button:any-link,
-.hero button.button {
-  margin: 0;
-  display: block;
-  width: 100%;
-}
-
 @media (width >= 510px) {
-  .hero a.button:any-link,
-  .hero button.button {
-    display: inline-flex;
-    width: fit-content;
+  .hero {
+    --button-display: inline-flex;
+    --button-width: fit-content;
   }
 }
 
@@ -105,19 +64,16 @@ main > div.hero-section {
    Default Hero Variation (em-accent)
    ======================================== */
 
-.hero:not(.hero-two-colored-right):not(.hero-black-colored-right) {
+.hero:not(.hero-two-colored-right, .hero-black-colored-right) {
   min-height: 737px;
   border-radius: var(--radius-12);
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-.hero-em-accent-background {
+.hero .hero-em-accent-background {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -126,19 +82,16 @@ main > div.hero-section {
   padding: 0;
 }
 
-.hero-em-accent-background picture {
+.hero .hero-em-accent-background picture {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
-.hero-em-accent-background img {
+.hero .hero-em-accent-background img {
   position: absolute;
   top: 0;
   left: 0;
@@ -150,15 +103,15 @@ main > div.hero-section {
   padding: 0;
 }
 
-.hero:not(.hero-two-colored-right):not(.hero-black-colored-right)::before {
+.hero:not(.hero-two-colored-right, .hero-black-colored-right)::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(0 0 0 / 40%) 100%);
 }
 
-.hero-em-accent-content {
+.hero .hero-em-accent-content {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -168,32 +121,31 @@ main > div.hero-section {
   margin: 0;
 }
 
-.hero-em-accent-content > div {
+.hero .hero-em-accent-content > div {
   max-width: 100%;
 }
 
-.hero-em-accent-content h1 {
+.hero .hero-em-accent-content h1 {
   margin: 0;
   padding: 0;
   color: var(--typography-inverse);
   max-width: 100%;
 }
 
-.hero-em-accent-content h1 em {
+.hero .hero-em-accent-content h1 em {
   font-style: normal;
   background: linear-gradient(88.41deg, #1C76D3 -2.79%, #B8D6DF 89.07%);
   background-clip: text;
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.hero-em-accent-content p {
+.hero .hero-em-accent-content p {
   margin: var(--spacing-700) 0 0;
   padding: 0;
   color: var(--typography-inverse);
 }
 
-.hero-em-accent-buttons-wrapper {
+.hero .hero-em-accent-buttons-wrapper {
   margin-top: var(--spacing-700);
   display: flex;
   flex-direction: column;
@@ -202,7 +154,7 @@ main > div.hero-section {
 }
 
 @media (width >= 510px) {
-  .hero-em-accent-buttons-wrapper {
+  .hero .hero-em-accent-buttons-wrapper {
     flex-direction: row;
     gap: var(--spacing-500);
     align-items: center;
@@ -210,31 +162,31 @@ main > div.hero-section {
 }
 
 @media (width >= 1025px) {
-  .hero:not(.hero-two-colored-right):not(.hero-black-colored-right) {
+  .hero:not(.hero-two-colored-right, .hero-black-colored-right) {
     min-height: 600px;
   }
 
-  .hero-em-accent-content {
+  .hero .hero-em-accent-content {
     max-width: 65%;
   }
 }
 
 @media (width >= 1440px) {
-  .hero:not(.hero-two-colored-right):not(.hero-black-colored-right) {
+  .hero:not(.hero-two-colored-right, .hero-black-colored-right) {
     min-height: 640px;
   }
 
-  .hero-em-accent-content {
+  .hero .hero-em-accent-content {
     max-width: 50%;
   }
 }
 
 @media (width >= 1920px) {
-  .hero:not(.hero-two-colored-right):not(.hero-black-colored-right) {
+  .hero:not(.hero-two-colored-right, .hero-black-colored-right) {
     min-height: 737px;
   }
 
-  .hero-em-accent-content {
+  .hero .hero-em-accent-content {
     max-width: 50%;
   }
 }
@@ -250,45 +202,46 @@ main > div.hero-section {
   padding: var(--responsive-spacing-between-section);
 }
 
-.hero-two-colored-right-content {
+.hero .hero-two-colored-right-content {
   position: relative;
   z-index: 1;
   width: 100%;
   box-sizing: border-box;
 }
 
-.hero-two-colored-right-image {
+.hero .hero-two-colored-right-image {
   width: 100%;
   position: relative;
   display: none;
+  overflow: hidden;
+  border-radius: var(--radius-12);
 }
 
-.hero-two-colored-right-image picture {
+.hero .hero-two-colored-right-image picture {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
-.hero-two-colored-right-image img {
+.hero .hero-two-colored-right-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-8);
+  border-radius: var(--radius-12);
 }
 
 .hero-two-colored-right h2 {
   margin: 0;
   padding: 0;
-  color: var(--typography-main);
   max-width: 100%;
 }
 
-.hero-two-colored-right h2 em {
+.hero.hero-two-colored-right h2 em {
   font-style: normal;
   color: var(--typography-accent-1);
 }
 
-.hero-two-colored-right-content p:not(.button-container) {
+.hero .hero-two-colored-right-content p:not(.button-container) {
   margin: var(--spacing-400) 0 0;
   padding: 0;
   color: var(--typography-secondary);
@@ -301,16 +254,16 @@ main > div.hero-section {
     gap: var(--spacing-600);
   }
 
-  .hero-two-colored-right-content {
+  .hero .hero-two-colored-right-content {
     flex: 1;
     max-width: 100%;
   }
 
-  .hero-two-colored-right-content p:not(.button-container) {
+  .hero .hero-two-colored-right-content p:not(.button-container) {
     margin: var(--spacing-600) 0 0;
   }
 
-  .hero-two-colored-right-image {
+  .hero .hero-two-colored-right-image {
     display: none;
   }
 }
@@ -320,36 +273,76 @@ main > div.hero-section {
     gap: var(--spacing-700);
   }
 
-  .hero-two-colored-right-content {
-    flex: 3;
+  .hero .hero-two-colored-right-content {
+    flex: 1 1 0%;
     max-width: 100%;
+    padding: var(--spacing-600) var(--spacing-600) var(--spacing-600) var(--responsive-spacing-horizontal);
   }
 
-  .hero-two-colored-right-image {
+  .hero .hero-two-colored-right-image {
     display: block;
-    flex: 2;
+    flex: 1 1 0%;
     max-width: 100%;
+    align-self: stretch;
   }
 }
 
 @media (width >= 1440px) {
-  .hero-two-colored-right-content {
-    flex: 1;
+  .hero .hero-two-colored-right-content {
+    flex: 1 1 0%;
   }
 
-  .hero-two-colored-right-image {
-    flex: 1;
+  .hero .hero-two-colored-right-image {
+    flex: 1 1 0%;
   }
 }
 
 @media (width >= 1920px) {
-  .hero-two-colored-right-content {
+  .hero .hero-two-colored-right-content {
     max-width: 50%;
   }
 
-  .hero-two-colored-right-image {
+  .hero .hero-two-colored-right-image {
     max-width: 50%;
   }
+}
+
+/* TO DO : Need to move this as a global tag style under styles.css */
+
+/* Tags — labels with asymmetric rounded corners (top-left + bottom-right) */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-300) var(--spacing-400);
+  border-radius: var(--radius-8) 0 var(--radius-8) 0;
+  white-space: nowrap;
+  border: var(--border-width-100) solid transparent;
+}
+
+/* Outline: transparent background with border */
+.tag-outline {
+  background-color: transparent;
+  color: var(--tag-text-outline);
+  border-color: var(--tag-border-outline);
+}
+
+/* Fill: solid background */
+.tag-fill {
+  background-color: var(--tag-bg-fill);
+  color: var(--tag-text-outline);
+}
+
+/* Glass: translucent, designed for dark backgrounds */
+.tag-glass {
+  background-color: var(--tag-bg-glass);
+  color: var(--tag-text-glass);
+  border-color: var(--tag-border-glass);
+}
+
+/* Dark: solid dark background */
+.tag-dark {
+  background-color: var(--color-black);
+  color: var(--typography-inverse);
 }
 
 /* ========================================
@@ -363,25 +356,25 @@ main > div.hero-section {
   padding: var(--responsive-spacing-between-section);
 }
 
-.hero-black-colored-right-content {
+.hero .hero-black-colored-right-content {
   position: relative;
   z-index: 1;
   width: 100%;
   box-sizing: border-box;
+  padding: var(--responsive-spacing-vertical) var(--spacing-600) var(--responsive-spacing-vertical) var(--responsive-spacing-horizontal);
 }
 
-.hero-black-colored-right-content > .tag {
+.hero .hero-black-colored-right-content > .tag {
   margin: 0 0 var(--spacing-400) 0;
 }
 
 .hero-black-colored-right h5 {
   margin: var(--spacing-700) 0 0;
   padding: 0;
-  color: var(--typography-main);
   max-width: 100%;
 }
 
-.hero-black-colored-right-content > p:not(.button-container):not(:first-of-type) {
+.hero .hero-black-colored-right-content > p:not(.button-container, :first-of-type) {
   margin: var(--spacing-700) 0 0;
   padding: 0;
 }
@@ -392,23 +385,25 @@ main > div.hero-section {
   display: block;
 }
 
-.hero-black-colored-right-image {
+.hero .hero-black-colored-right-image {
   width: 100%;
   position: relative;
   display: none;
+  overflow: hidden;
+  border-radius: var(--radius-12);
 }
 
-.hero-black-colored-right-image picture {
+.hero .hero-black-colored-right-image picture {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
-.hero-black-colored-right-image img {
+.hero .hero-black-colored-right-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-8);
+  border-radius: var(--radius-12);
 }
 
 @media (width >= 720px) {
@@ -418,7 +413,7 @@ main > div.hero-section {
     gap: var(--spacing-600);
   }
 
-  .hero-black-colored-right-image {
+  .hero .hero-black-colored-right-image {
     display: none;
   }
 }
@@ -428,34 +423,67 @@ main > div.hero-section {
     gap: var(--spacing-700);
   }
 
-  .hero-black-colored-right-content {
-    flex: 3;
+  .hero .hero-black-colored-right-content {
+    flex: 1 1 0%;
     max-width: 100%;
   }
 
-  .hero-black-colored-right-image {
+  .hero .hero-black-colored-right-image {
     display: block;
-    flex: 2;
+    flex: 1 0 0%;
     max-width: 100%;
+    align-self: stretch;
   }
 }
 
 @media (width >= 1440px) {
-  .hero-black-colored-right-content {
-    flex: 1;
+  .hero .hero-black-colored-right-content {
+    flex: 1 1 0%;
   }
 
-  .hero-black-colored-right-image {
-    flex: 1;
+  .hero .hero-black-colored-right-image {
+    flex: 1 0 0%;
   }
 }
 
 @media (width >= 1920px) {
-  .hero-black-colored-right-content {
+  .hero .hero-black-colored-right-content {
     max-width: 50%;
   }
 
-  .hero-black-colored-right-image {
+  .hero .hero-black-colored-right-image {
     max-width: 50%;
   }
+}
+
+/* ========================================
+   Hero Section Overrides
+   (hero-section class injected from hero.js)
+   ======================================== */
+
+.hero-section .hero-wrapper {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-section .hero-two-colored-right-content,
+.hero-section .hero-black-colored-right-content {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-section .hero-two-colored-right-content *,
+.hero-section .hero-black-colored-right-content * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-section .hero-two-colored-right-content img,
+.hero-section .hero-black-colored-right-content img,
+.hero-section .hero-two-colored-right-content picture,
+.hero-section .hero-black-colored-right-content picture {
+  max-width: 100%;
+  height: auto;
 }

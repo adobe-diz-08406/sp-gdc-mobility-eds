@@ -4,12 +4,13 @@
 a.button:any-link,
 button.button {
   box-sizing: border-box;
-  display: inline-flex;
+  display: var(--button-display, inline-flex);
   align-items: center;
   justify-content: center;
   gap: var(--spacing-200);
   max-width: 100%;
-  margin: var(--spacing-300) 0;
+  margin: var(--button-margin, var(--spacing-300) 0);
+  width: var(--button-width, auto);
   border: 1px solid transparent;
   border-radius: var(--radius-8);
   padding: var(--spacing-500) var(--spacing-600);
@@ -27,15 +28,15 @@ button.button {
 }
 
 /* Icons inside buttons */
-a.button:any-link .icon,
-button.button .icon {
+button.button .icon,
+a.button:any-link .icon {
   width: var(--icon-size-xsm);
   height: var(--icon-size-xsm);
 }
 
 /* Icon color handling (icons are <img> SVGs, so we use filter) */
-a.button:any-link .icon img,
-button.button .icon img {
+button.button .icon img,
+a.button:any-link .icon img {
   /* default: assume the source SVG is black */
   filter: var(--button-icon-filter, none);
 }
@@ -51,7 +52,9 @@ button.button.icon-only {
 }
 
 /* Icon-only small (48px square) */
+
 /* Commenting out for now, as we don't have any icon-only small buttons in the design system. */
+
 /* a.button.icon-only.size-48:any-link,
 button.button.icon-only.size-48 {
   width: var(--size-48);
@@ -67,6 +70,7 @@ button.button,
 button.button.primary {
   background-color: var(--button-primary-default);
   color: var(--button-primary-text);
+
   --button-icon-filter: brightness(0) invert(1); /* white */
 }
 
@@ -93,6 +97,7 @@ button.button.secondary {
   background-color: var(--button-secondary-bg-default);
   border-color: var(--button-secondary-stroke-default);
   color: var(--button-secondary-text-default);
+
   --button-icon-filter: none; /* black */
 }
 
@@ -103,6 +108,7 @@ button.button.secondary:focus {
   background-color: var(--button-secondary-bg-hover);
   border-color: var(--button-secondary-stroke-hover);
   color: var(--button-secondary-text-hover);
+
   --button-icon-filter: brightness(0) invert(1); /* white */
 }
 
@@ -114,19 +120,11 @@ button.button.inverted {
   background-color: transparent;
   border-color: var(--button-inverse-default);
   color: var(--button-inverse-default);
+
   --button-icon-filter: brightness(0) invert(1); /* white */
 }
 
-.inverted a.button:hover,
-.inverted a.button:focus,
-.inverted button.button:hover,
-.inverted button.button:focus {
-  background-color: var(--button-inverse-default);
-  color: var(--surface-dark);
-  --button-icon-filter: none; /* black */
-}
-
-/* Disabled */
+/* Disabled (before inverted hover for specificity order) */
 button.button:disabled,
 button.button:disabled:hover {
   background-color: var(--color-grey-disabled);
@@ -135,3 +133,12 @@ button.button:disabled:hover {
   cursor: not-allowed;
 }
 
+.inverted a.button:hover,
+.inverted a.button:focus,
+.inverted button.button:hover,
+.inverted button.button:focus {
+  background-color: var(--button-inverse-default);
+  color: var(--surface-dark);
+
+  --button-icon-filter: none; /* black */
+}
