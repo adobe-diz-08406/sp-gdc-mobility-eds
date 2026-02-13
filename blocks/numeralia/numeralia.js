@@ -86,18 +86,6 @@ export default function decorate(block) {
   statsSection.className = 'stats';
 
   children.forEach((child, index) => {
-    if (index === 0) {
-      child.className = 'title-wrapper';
-      const [titleDiv, subtitleDiv] = child.children;
-      if (titleDiv) {
-        const eyebrow = eyebrowDecorator(titleDiv, 'accent-color');
-        if (eyebrow) {
-          titleDiv.replaceWith(eyebrow);
-        }
-      }
-      if (subtitleDiv) subtitleDiv.className = 'subtitle';
-      headerSection.appendChild(child);
-    } else {
       child.className = 'stat-item';
       const [numberDiv, descriptionDiv] = child.children;
       if (numberDiv) {
@@ -108,7 +96,6 @@ export default function decorate(block) {
       }
       if (descriptionDiv) descriptionDiv.className = 'description';
       statsSection.appendChild(child);
-    }
   });
 
   block.textContent = '';
