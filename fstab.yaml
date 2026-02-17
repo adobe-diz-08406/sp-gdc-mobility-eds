@@ -1,0 +1,4 @@
+mountpoints:
+  /: 
+    url: https://content.da.live/seejan-adobe/eds-da-plugin-sj
+    type: markup
