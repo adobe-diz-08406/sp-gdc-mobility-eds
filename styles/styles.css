@@ -187,6 +187,7 @@ main .section.inverted {
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-26);
   color: var(--typography-main);
+  text-transform: var(--text-transform-capitalize);
 }
 
 .eye-brow-text.accent-color {

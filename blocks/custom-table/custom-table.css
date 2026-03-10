@@ -1,0 +1,112 @@
+.custom-table {
+  /* Outer container (blue panel in design) */
+  --custom-table-surface: var(--surface-page-accent-1);
+  --custom-table-radius: var(--radius-lg);
+  --custom-table-padding: var(--spacing-800);
+  --custom-table-col-gap: var(--spacing-800);
+  --custom-table-row-gap: var(--spacing-800);
+
+  /* List + icon styling */
+  --custom-table-item-gap-y: var(--spacing-600);
+  --custom-table-icon-gap: var(--spacing-600);
+  --custom-table-icon-size: var(--size-20);
+  --custom-table-icon-border: var(--size-2);
+  --custom-table-icon-color: var(--typography-main);
+
+  /* Inner card (white add-on panel in design) */
+  --custom-table-addon-surface: var(--surface-white);
+  --custom-table-addon-radius: var(--radius-md);
+  --custom-table-addon-padding: var(--spacing-800);
+
+  background: var(--custom-table-surface);
+  border-radius: var(--custom-table-radius);
+  padding: var(--custom-table-padding);
+}
+
+.custom-table > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--custom-table-row-gap);
+}
+
+.custom-table-col {
+  min-width: 0;
+}
+
+.custom-table-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--custom-table-item-gap-y);
+}
+
+.custom-table-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--custom-table-icon-gap);
+  font-size: var(--body-font-size-m);
+  line-height: var(--line-height-160p);
+  color: var(--text-color-secondary);
+}
+
+/* Default (Base Products): check-in-circle bullet */
+.custom-table-item::before {
+  content: '✓';
+  width: var(--custom-table-icon-size);
+  height: var(--custom-table-icon-size);
+  flex: 0 0 var(--custom-table-icon-size);
+  border: var(--custom-table-icon-border) solid var(--custom-table-icon-color);
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  font-size: var(--font-size-200);
+  line-height: 1;
+  font-weight: var(--font-weight-bold);
+  color: var(--custom-table-icon-color);
+  margin-top: var(--size-2);
+}
+
+/* Two-column variant */
+/* Inner white card styling for the 2nd column ("Add-on Modules") */
+.custom-table.custom-table-2-cols .custom-table-col:last-child {
+  background: var(--custom-table-addon-surface);
+  border-radius: var(--custom-table-addon-radius);
+  padding: var(--custom-table-addon-padding);
+}
+
+/* "Add-on Modules": asterisk bullet (no circle) */
+.custom-table.custom-table-2-cols .custom-table-col:last-child .custom-table-item::before {
+  content: '*';
+  width: var(--custom-table-icon-size);
+  height: auto;
+  flex: 0 0 var(--custom-table-icon-size);
+  border: 0;
+  border-radius: 0;
+  display: inline-block;
+  text-align: center;
+  /* 28px derived from tokens: 32 - 4 */
+  font-size: calc(var(--size-32) - var(--size-4));
+  line-height: 1;
+  font-weight: var(--font-weight-regular);
+  color: var(--typography-main);
+  margin-top: calc(var(--size-2) * -1);
+}
+
+@media (width >= 720px) {
+  .custom-table.custom-table-2-cols > div {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--custom-table-col-gap);
+    align-items: start;
+  }
+}
+
+@media (width >= 1025px) {
+  .custom-table {
+    --custom-table-padding: var(--spacing-900);
+    --custom-table-col-gap: var(--spacing-900);
+    --custom-table-addon-padding: var(--spacing-900);
+  }
+}
+

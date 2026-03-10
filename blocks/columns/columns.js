@@ -1,4 +1,9 @@
+import { eyebrowDecorator } from '../../scripts/scripts.js';
 export default function decorate(block) {
+  const eyebrow = eyebrowDecorator(block.querySelector('p'));
+  if (eyebrow) {
+    block.prepend(eyebrow);
+  }
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
